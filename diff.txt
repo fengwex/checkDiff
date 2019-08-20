@@ -1,0 +1,115 @@
+diff --git a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/controller/WebMvcConfig.java b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/controller/WebMvcConfig.java
+index 7f556da..7a398fd 100644
+--- a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/controller/WebMvcConfig.java
++++ b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/controller/WebMvcConfig.java
+@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.ContentNegotiationConfi
+ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+ 
++import org.springframework.web.servlet.config.annotation.WebMvcConfig;
+ import java.util.List;
+ 
+ @Configuration
+@@ -26,11 +27,6 @@ public class WebMvcConfig implements WebMvcConfigurer, WebServerFactoryCustomize
+     argumentResolvers.add(pageResolver);
+   }
+ 
+-  @Override
+-  public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+-    configurer.favorPathExtension(false);
+-    configurer.ignoreAcceptHeader(true).defaultContentType(MediaType.APPLICATION_JSON_UTF8);
+-  }
+
+-  @Override
+-  public void Test1()
+-  {
+-    a.run(a,b)
+-  }
+
+  public void Test2() {
+  {    {}
+       }
+  }
+
+-  @Override
+-  public void Test2() {
+-  {    {}
+-       }
+-  }
+
+  public void Test2() {
+  {    {}
+       }
+  }
+
+   @Override
+   public void customize(TomcatServletWebServerFactory factory) {
+diff --git a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/App.java b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/App.java
+index aafce46..535a563 100644
+--- a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/App.java
++++ b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/App.java
+@@ -120,6 +120,11 @@ public class App extends BaseEntity {
+       return this;
+     }
+ 
++    public Builder orgd(String orgId) {
++      app.setOrgId(orgId);
++      return this;
++    }
++
+
+-  @Override
+-  public void Test2() {
+-  {    {}
+-       }
+-  }
+
+     public Builder orgName(String orgName) {
+       app.setOrgName(orgName);
+       return this;
+diff --git a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/BaseEntity.java b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/BaseEntity.java
+index 2114143..51a8b57 100644
+--- a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/BaseEntity.java
++++ b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/BaseEntity.java
+@@ -94,11 +94,6 @@ public abstract class BaseEntity {
+     if (this.dataChangeLastModifiedTime == null) dataChangeLastModifiedTime = new Date();
+   }
+ 
+-  @PreUpdate
+-  protected void preUpdate() {
+-    this.dataChangeLastModifiedTime = new Date();
+-  }
+-
+
++    public Builder orgd(String orgId) {
++      app.setOrgId(orgId);
++      return this;
++    }
++
+
+   @PreRemove
+   protected void preRemove() {
+     this.dataChangeLastModifiedTime = new Date();
+diff --git a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/EntityPair.java b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/EntityPair.java
+index 71109c1..fac6cd4 100644
+--- a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/EntityPair.java
++++ b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/entity/EntityPair.java
+@@ -8,6 +8,7 @@ public class EntityPair<E> {
+   public EntityPair(E firstEntity, E secondEntity){
+     this.firstEntity = firstEntity;
+     this.secondEntity = secondEntity;
++
+   }
+ 
+   public E getFirstEntity() {
+diff --git a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/exception/NotFoundException.java b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/exception/NotFoundException.java
+index 5d68ea6..d32269d 100644
+--- a/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/exception/NotFoundException.java
++++ b/apollo-master/apollo-common/src/main/java/com/ctrip/framework/apollo/common/exception/NotFoundException.java
+@@ -8,5 +8,6 @@ public class NotFoundException extends AbstractApolloHttpException {
+   public NotFoundException(String str) {
+     super(str);
+     setHttpStatus(HttpStatus.NOT_FOUND);
++    setHttpStatus(HttpStatus.NOT_FOUN);
+   }
+ }
